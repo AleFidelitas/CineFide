@@ -7,14 +7,15 @@ create user 'administrador'@'%' identified by 'Admin123';
 grant all privileges on cinefide.* to 'administrador'@'%';
 flush privileges;
 
-create table cinefide.usuarios(
+create table cinefide.usuario(
 id_usuario int NOT NULL Auto_Increment primary key, 
-usuario  varchar(50),    
+username  varchar(50) UNIQUE,    
 nombre  varchar(50), 
 apellidos  varchar(100),
-contraseña  varchar(50),    
-correo  varchar(100), 
-fecha varchar(30))
+contrasena  varchar(50), 
+correo  varchar(100) UNIQUE, 
+fecha varchar(30),
+tipo INT DEFAULT 1)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
