@@ -24,9 +24,15 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+   
                         <ul class="navbar-nav">
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/cartelera/listado}">[[#{plantilla.cartelera}]]</a></li> 
                         </ul>
+                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <ul class="navbar-nav">
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/proximosestrenos/listado}">[[#{plantilla.proximosestrenos}]]</a></li> 
+                        </ul>
+                         </div>
                         <ul class="navbar-nav">
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/usuario/iniciar}"><i class="fa-regular fa-user"></i></a></li>
                             <li class="nav-item dropdown">

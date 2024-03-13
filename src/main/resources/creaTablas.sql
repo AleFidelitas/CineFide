@@ -19,7 +19,7 @@ tipo INT DEFAULT 1)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
-create table cinefide(
+create table cinefide.cartelera(
 id_pelicula int NOT NULL Auto_Increment primary key, 
 titulo  varchar(200), 
 imagen  varchar(3000),
@@ -38,3 +38,20 @@ INSERT INTO cinefide.cartelera(id_pelicula,titulo,imagen,descripcion,horario) VA
 (7,'Anyone But You Movie','https://pics.filmaffinity.com/Anyone_But_You-290348256-large.jpg','Bea y Ben parecen la pareja perfecta, pero después de una primera cita increíble, sucede algo que frena su atracción. Hasta que inesperadamente se juntan en una boda en Australia.','L: 6:30 a 8:00 pm, 4:30 a 6:00 pm'),
 (8,'The Iron Claw','https://m.media-amazon.com/images/M/MV5BOGE5NjllZTEtMGJjNy00ZTFmLThlNDItNmNiZTgyOTQ4OTA2XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg','Una familia de luchadores que se enfrentan en el ring deben lidiar con una serie de tragedias personales.','S: 9:30 a 12:00 AM'),
 (9,'Imaginary','https://m.media-amazon.com/images/M/MV5BODIzOTJiODUtNzM2MC00YjdjLTg5YTktZWZhNjY1N2I5NWRjXkEyXkFqcGdeQXVyMjY5ODI4NDk@._V1_.jpg','Una mujer regresa con su familia a la casa donde creció. Su hija menor pronto se encariña con un osito de peluche que encuentra en el sótano. Aunque la interacción parece divertida, la situación pronto se vuelve siniestra.','D: 2:30 a 4:00 pm, 6:30 a 8:00 pm');
+
+
+create table cinefide.proximosEstrenos(
+id_pelicula int NOT NULL Auto_Increment primary key, 
+titulo  varchar(200), 
+imagen  varchar(3000),
+descripcion varchar(3000),
+fecha varchar(3000))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+INSERT INTO cinefide.proximosEstrenos(id_pelicula,titulo,imagen,descripcion,fecha) VALUES
+(1,'Godzilla y Kong: El Nuevo Imperio','https://static.cinepolis.com.ar/posters/2130/w500/lm-gxk-vert-tsr-2764x4096-intljpg','Una aventura cinematográfica completamente nueva, que enfrentará al todopoderoso Kong y al temible Godzilla contra una colosal amenaza desconocida escondida dentro de nuestro mundo.','Marzo 2024'),
+(2,'Nosotros los de la Fe','https://pics.filmaffinity.com/Nosotros_los_de_la_fe-410580689-mmed.jpg','Narra la vida de una familia cristiana a lo largo de 20 años y su búsqueda por hacer la voluntad de Dios.','Marzo 2024'),
+(3,'Exorcistas','https://s3-eu-west-1.amazonaws.com/abandomedia/db/foto/db_44817_45.jpg','Cuando su hijo es poseído por un mal implacable, un padre contrata a tres exorcistas expertos para alejar al demonio y salvar a su familia.','Marzo 2024'),
+(4,'Suga','https://statics.cinemex.com/movie_posters/LQdGPwlTP16wLQl-750x1125.jpg','¡La esperada película del concierto bis de SUGA de BTS <SUGA│Agust D TOUR ‘D-DAY’ THE MOVIE> irrumpe en la gran pantalla de todo el mundo! Como gran final de la gira mundial, "SUGA | Agust D TOUR THE FINAL" simbolizó la culminación de 25 conciertos ofrecidos en 10 ciudades, que cautivaron a un total de 290 000 espectadores durante el transcurso de todas sus presentaciones.','Abril 2024'),
+(5,'GhostBursters: Apocalipsis Fantasma','https://palomaynacho-1f321.kxcdn.com/wp-content/uploads/2023/12/Poster-Ghostbusters-Apocalipsis-fantasma-jpg.webp','Después de los eventos de Oklahoma, el equipo de Cazafantasmas regresa a donde comenzó todo: ¡Nueva York! La historia de la familia Spengler continúa con un nuevo grupo de Cazafantasmas.','Abril 2024');
