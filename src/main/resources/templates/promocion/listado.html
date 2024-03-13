@@ -3,7 +3,7 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>LaPagina</title>
+        <title>CineFide</title>
         <meta charset="UTF-8"/>
 
     </head>
@@ -12,10 +12,12 @@
         
         <header th:replace="~{layout/plantilla :: header}"/>
         
+        <section th:replace="~{promocion/fragmentos :: botonesAgregar}"/>
         
-        <section th:replace="~{usuario/fragmentos :: editarUsuario}"/>
+        <section th:replace="~{promocion/fragmentos :: listadoPromocion}"/>
         
-
+        <section th:replace="~{promocion/fragmentos :: agregarPromocion}"/>
+        
         <footer th:replace="~{layout/plantilla :: footer}"/>   
         
     </body>
