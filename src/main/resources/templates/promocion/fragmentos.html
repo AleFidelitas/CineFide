@@ -6,7 +6,7 @@
         <title>CineFide</title>
     </head>
     <body>
-        <!-- 1 Sección para crear el boton de agregar promociones... llamará a una ventana modal-->
+        <!-- 1 Sección para crear el boton de agregar promociones... llamará a una ventana modal x-->
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
             <div class="container">
                 <div class="row">
@@ -63,51 +63,81 @@
         </section>
 
         <!-- 3 Sección principal para mostrar la informaccion de la entidad promocion -->
-        <section th:fragment="listadoPromocions" id="promocions">
+        <section th:fragment="listadoPromocion" id="promocion">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>[[#{promocion.listado}]]</h4>
-                            </div>
-                            <div th:if="${promocions != null and !promocions.empty}">
-                                <table class="table table-striped table-hover">
-                                    <thead class="table-dark">
-                                        <tr><th>#</th>
-                                            <th>[[#{promocion.descripcion}]]</th>
-                                            <th>[[#{promocion.activo}]]</th>
-                                            <th></th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="promocion, contador : ${promocions}">
-                                            <td>[[${contador.count}]]</td>
-                                            <td>[[${promocion.descripcion}]]</td>
-                                            <td th:text="${promocion.activo} ? 'Activa' : 'Inactiva'" />
-                                            <td><a th:href="@{/promocion/eliminar/}+${promocion.idPromocion}"
-                                                   class="btn btn-danger">
-                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
-                                                <a th:href="@{/promocion/modificar/}+${promocion.idPromocion}"
-                                                   class="btn btn-success">
-                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="text-center p-2" th:if="${promocions == null or promocions.empty}">
-                                <span>[[#{lista.vacia}]]</span>
+                    <div class="col-12">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="https://img.freepik.com/vector-premium/icono-pagina-calendario-lunes-dibujos-animados-vectoriales-estilo-comico-pictograma-ilustracion-signo-calendario-concepto-efecto-salpicadura-negocio-agenda-lunes_157943-7639.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Promoción tardeada de lunes</h5>
+                                        <p class="card-text">Podes distrutar las promociones de un 20% de descuento todos los lunes, en horarios de 1 a 3 de la tarde.</p>
+                                        <a href="#" class="btn btn-primary">Obtener promoción</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card text-center bg-success text-white mb-3">
-                            <div class="card-body">
-                                <h3>[[#{promocion.total}]]</h3>
-                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalPromocions}]]</h4>
+                        <div class="col">
+                            <div class="card w-80 mb-3" style="max-width: 540px;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-plan-tarjeta-credito_114360-209.jpg?t=st=1710281942~exp=1710285542~hmac=adbcffc8549300fd109d02fd901e7a12cf8086b5997e2a58f4cdcdb0bd9d717d&w=740" class="img-fluid rounded-start" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Master Promo</h5>
+                                            <p class="card-text">Podes distrutar las promociones de un 15% de descuento todos los días al resalizar tus pagos con tarjetas MasterCard.</p>
+                                            <a href="#" class="btn btn-primary">Obtener promoción</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card w-80 mb-3" style="max-width: 540px;">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-estudiante-feliz_114360-8328.jpg?t=st=1710281764~exp=1710285364~hmac=efcb82f3d19871e82c647003268b3a3dfa8c2b5ac2ea16787af1308593668169&w=740" class="img-fluid rounded-start" alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Promo Estuadiante</h5>
+                                                <p class="card-text">Al presentar tur carnet de estudiante podes disfrutar de un 10% de descuentos e todos nuestros horarios.</p>
+                                                <a href="#" class="btn btn-primary">Obtener promoción</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div th:if="${promocion != null and !promocion.empty}">
+                                    <table class="table table-striped table-hover">
+                                        <thead class="table-dark">
+                                            <tr><th>#</th>
+                                                <th>[[#{promocion.descripcion}]]</th>
+                                                <th>[[#{promocion.activo}]]</th>
+                                                <th></th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="promocion, contador : ${promocion}">
+                                                <td>[[${contador.count}]]</td>
+                                                <td>[[${promocion.descripcion}]]</td>
+                                                <td th:text="${promocion.activo} ? 'Activa' : 'Inactiva'" />
+                                                <td><a th:href="@{/promocion/eliminar/}+${promocion.idPromocion}"
+                                                       class="btn btn-danger">
+                                                        <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
+                                                    <a th:href="@{/promocion/modificar/}+${promocion.idPromocion}"
+                                                       class="btn btn-success">
+                                                        <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
 
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
