@@ -19,6 +19,14 @@ tipo INT DEFAULT 1)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
+create table cinefide.promocion(
+id_promocion int NOT NULL Auto_Increment primary key, 
+nombre_promocion  varchar(100),
+descripcion  varchar(5000),
+reglamento  varchar(5000))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
 create table cinefide.cartelera(
 id_pelicula int NOT NULL Auto_Increment primary key, 
 titulo  varchar(200), 

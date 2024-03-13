@@ -19,11 +19,6 @@ public class PromocionServiceImpl implements PromocionService{
     public List<Promocion> getPromocion(boolean activo) {
         var lista=promocionDao.findAll();
         
-        if (activo){
-            lista.removeIf(c -> !c.isActivo());
-        }
-        
-        
         return lista;
     }
 
@@ -46,3 +41,4 @@ public class PromocionServiceImpl implements PromocionService{
     }
     
 }
+
