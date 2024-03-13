@@ -14,8 +14,11 @@ public class Usuario implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idUsuario")
     private Long idUsuario;
-  
-    private String descripcion;
-    private String rutaImagen;
-    private boolean activo;
+    private String username;
+    private String nombre;
+    private String apellidos;
+    private String contrasena;
+    private String correo;
+    private String fecha;
+    private Integer tipo;
 }
