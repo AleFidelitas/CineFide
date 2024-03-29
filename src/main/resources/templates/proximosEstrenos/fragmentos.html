@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>CineFide</title>
+    </head>
+    <body>
+        <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
+        <section th:fragment="tabsCategorias" id="categorias">
+            <div class="row py-4">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/proximosestrenos/listado" style="color: black;">[[#{proximosestrenos.todas}]]</a>
+                    </li>
+                    <li class="nav-item" th:each="c : ${categorias}">
+                        <a class="nav-link" th:href="@{/proximosestrenos/listado/}+${c.idPelicula}" style="color: black;">[[${c.titulo}]]</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2 Fragmento para agregar cartelera-->
+        <section th:fragment="listadoProximosEstrenos" id="pelicula">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-3" th:each="p : ${proximosestrenos}">
+                        <div class="card" style="width: 100%;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img th:src="${p.imagen}" class="card-img img-fluid rounded-start h-100 w-100" style="object-fit: cover;"/>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                                        <h5 class="card-title mb-0">[[${p.titulo}]]</h5>
+                                        <p class="card-text mb-0">[[${p.descripcion}]]</p>
+                                        <p class="card-text"><small class="text-body-secondary">Fecha: [[${p.fecha}]]</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </body>
+</html>

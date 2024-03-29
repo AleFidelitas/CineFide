@@ -18,12 +18,6 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Transactional(readOnly = true)
     public List<Usuario> getUsuario(boolean activo) {
         var lista=usuarioDao.findAll();
-        
-        if (activo){
-            lista.removeIf(c -> !c.isActivo());
-        }
-        
-        
         return lista;
     }
 
@@ -32,6 +26,13 @@ public class UsuarioServiceImpl implements UsuarioService{
     public Usuario getUsuario(Usuario usuario) {
         return usuarioDao.findById(usuario.getIdUsuario()).orElse(null);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario getByUsername(String username) {
+        return usuarioDao.findByUsername(username).orElse(null);
+    }
+    
 
     @Override
     @Transactional
