@@ -19,5 +19,9 @@ public class Cartelera implements Serializable{
     private String imagen;
     private String descripcion;
     private String horario;
-    
+    private String trailer;
+    private String director;
+    private String actor;
+    private String guionista;
+    private String clasificacion;
 }

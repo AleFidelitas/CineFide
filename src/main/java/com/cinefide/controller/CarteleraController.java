@@ -14,21 +14,26 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/cartelera")
 public class CarteleraController {
-    
+
     @Autowired
     private CarteleraService carteleraService;
-    
+
     @GetMapping("/listado")
-    public String listado(Model model){
+    public String listado(Model model) {
         var lista = carteleraService.getCartelera(false);
         model.addAttribute("cartelera", lista);
-        model.addAttribute("totalCarteleras", lista.size());       
-        
+        model.addAttribute("totalCarteleras", lista.size());
+
         var descripcion = carteleraService.getCartelera(false);
         model.addAttribute("cartelera", lista);
-        
+
         return "/cartelera/listado";
     }
-            
-    
+
+    @GetMapping("/detalle")
+    public String detalle(Model model) {
+        var detalle = carteleraService.getCartelera(false);
+        model.addAttribute("detalle", detalle);
+        return "/cartelera/detalle";
+    }
 }
