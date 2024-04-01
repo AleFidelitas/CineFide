@@ -11,20 +11,21 @@
             <div class="row py-4">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link" href="/cartelera/listado/valoracion" style="color: black;">[[#{cartelera.todas}]]</a>
+                        <a class="nav-link" href="/valoracion/listado/" style="color: black;">[[#{valoracion.todas}]]</a>
                     </li>
                     <li class="nav-item" th:each="c : ${categorias}">
-                        <a class="nav-link" th:href="@{/cartelera/listado/valoracion/}+${c.idPelicula}" style="color: black;">[[${c.titulo}]]</a>
+                        <a class="nav-link" th:href="@{/valoracion/listado/}+${c.idPelicula}" style="color: black;">[[${c.titulo}]]</a>
                     </li>
                 </ul>
             </div>
         </section>
-
+        
+        
         <!-- 2 Fragmento para agregar cartelera-->
-        <section th:fragment="listadoCartelera" id="pelicula">
+        <section th:fragment="listadoValoracion" id="pelicula">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6 mb-3" th:each="p : ${cartelera}">
+                    <div class="col-md-6 mb-3" th:each="p : ${valoracion}">
                         <div class="card" style="width: 100%;">
                             <div class="row g-0">
                                 <div class="col-md-4">

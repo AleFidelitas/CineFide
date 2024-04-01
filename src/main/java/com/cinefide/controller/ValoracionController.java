@@ -22,7 +22,7 @@ public class ValoracionController {
     public String listado(Model model){
         var lista = valoracionService.getValoracion(false);
         model.addAttribute("valoracion", lista);
-        model.addAttribute("totalValoracions", lista.size());       
+        model.addAttribute("totalValoraciones", lista.size());       
         
         var descripcion = valoracionService.getValoracion(false);
         model.addAttribute("valoracion", lista);

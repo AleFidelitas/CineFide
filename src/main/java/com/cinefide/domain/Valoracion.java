@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="cartelera")
+@Table(name="valoracion")
 public class Valoracion implements Serializable{
     private static final long serialVersionUID=1L;
     
@@ -18,6 +18,7 @@ public class Valoracion implements Serializable{
     private String titulo;
     private String imagen;
     private String descripcion;
+    private String valoraciones;
     private String horario;
     
 }
