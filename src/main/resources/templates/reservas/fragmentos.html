@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>CineFide</title>
+    </head>
+    <body>
+        <!-- 1 Sección para crear el boton de agregar promociones... llamará a una ventana modal-->
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarReservas">
+                            <i class="fas fa-plus"></i> [[#{reservas.agregar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2 Fragmento para agregar reserva, es la ventana modal -->
+        <section th:fragment="agregarReservas">
+            <div id="agregarReservas" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">[[#{reservas.agregar}]]</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/reservas/guardar}" th:object="${reservas}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-4">
+                                    <label for="descripcion">[[#{reservas.descripcion}]]</label>
+                                    <input type="text" class="form-control" name="descripcion" required="true"/>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="fecha">[[#{reservas.fecha}]]</label>
+                                    <input type="text" class="form-control" name="fecha" required="true"/>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="horario">[[#{reservas.horario}]]</label>
+                                    <input type="text" class="form-control" name="horario" required="true"/>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="asiento">[[#{reservas.asiento}]]</label>
+                                    <input type="text" class="form-control" name="asiento" required="true"/>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 Sección principal para mostrar la informaccion de la entidad promocion -->
+        <section th:fragment="listadoReservas" id="reservas">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{reservas.listado}]]</h4>
+                            </div>
+                            <div th:if="${reservas != null and !reservas.empty}">
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-dark">
+                                        <tr><th></th>
+                                            <th>[[#{reservas.fecha}]]</th>
+                                            <th>[[#{reservas.horario}]]</th>
+                                            <th>[[#{reservas.asiento}]]</th>
+                                            <th>[[#{reservas.descripcion}]]</th>
+                                            <th></th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="reservas, contador : ${reservas}">
+                                            
+                                            <td class="col-md-4">
+                                                <img th:src="${reservas.imagen}" class="card-img img-fluid rounded-start h-30 w-25"style="object-fit: cover;"/>
+                                            </td>
+                                            <td>[[${reservas.fecha}]]</td>
+                                            <td>[[${reservas.horario}]]</td>
+                                            <td>[[${reservas.asiento}]]</td>
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${reservas.descripcion}]]</td>
+                                            <td><a th:href="@{/reservas/eliminar/}+${reservas.idPelicula}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
+                                                <a th:href="@{/reservas/modificar/}+${reservas.idPelicula}"
+                                                   class="btn btn-success">
+                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${reservas == null or reservas.empty}">
+                                <span>[[#{lista.vacia}]]</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center bg-success text-white mb-3">
+                            <div class="card-body">
+                                <h3>[[#{reservas.total}]]</h3>
+                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalReservas}]]</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 Fragmento que se utiliza en la página modifca.html -->
+        <section th:fragment="editarReservas">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/reservas/guardar}" 
+                          th:object="${reservas}"
+                          class="was-validated"                          
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="idPelicula" th:field="*{idPelicula}"/>
+                        <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
+                        <section th:replace="~{reservas/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>[[#{accion.actualizar}]]</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="descripcion">[[#{reservas.descripcion}]]</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="nombre_pelicula" th:field="*{nombre}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="imagen">[[#{reservas.rutaImagen}]]</label>
+                                                    <input class="form-control" type="file" name="imagenFile"
+                                                           onchange="readURL(this);" />
+                                                    <img id="blah" th:src="@{${reservas.rutaImagen}}" alt="your image" height="200"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a th:href="@{/reservas/listado}" class="btn btn-primary">
+                            <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">                                
+                        <a th:href="@{/reservas/eliminar/}+${reservas.idPelicula}"
+                           class="btn btn-danger">
+                            <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

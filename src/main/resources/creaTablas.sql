@@ -55,3 +55,19 @@ INSERT INTO cinefide.proximosEstrenos(id_pelicula,titulo,imagen,descripcion,fech
 (3,'Exorcistas','https://s3-eu-west-1.amazonaws.com/abandomedia/db/foto/db_44817_45.jpg','Cuando su hijo es poseído por un mal implacable, un padre contrata a tres exorcistas expertos para alejar al demonio y salvar a su familia.','Marzo 2024'),
 (4,'Suga','https://statics.cinemex.com/movie_posters/LQdGPwlTP16wLQl-750x1125.jpg','¡La esperada película del concierto bis de SUGA de BTS <SUGA│Agust D TOUR ‘D-DAY’ THE MOVIE> irrumpe en la gran pantalla de todo el mundo! Como gran final de la gira mundial, "SUGA | Agust D TOUR THE FINAL" simbolizó la culminación de 25 conciertos ofrecidos en 10 ciudades, que cautivaron a un total de 290 000 espectadores durante el transcurso de todas sus presentaciones.','Abril 2024'),
 (5,'GhostBursters: Apocalipsis Fantasma','https://palomaynacho-1f321.kxcdn.com/wp-content/uploads/2023/12/Poster-Ghostbusters-Apocalipsis-fantasma-jpg.webp','Después de los eventos de Oklahoma, el equipo de Cazafantasmas regresa a donde comenzó todo: ¡Nueva York! La historia de la familia Spengler continúa con un nuevo grupo de Cazafantasmas.','Abril 2024');
+
+create table cinefide.reservas(
+id_pelicula int NOT NULL Auto_Increment primary key, 
+imagen  varchar(3000),
+fecha varchar(3000),
+horario varchar(3000),
+asiento varchar(3000),
+descripcion varchar(3000))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+INSERT INTO cinefide.reservas(id_pelicula,imagen,fecha,horario,asiento,descripcion) VALUES
+(1,'https://m.media-amazon.com/images/M/MV5BN2QyZGU4ZDctOWMzMy00NTc5LThlOGQtODhmNDI1NmY5YzAwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Lunes','2:30 a 4:30pm','Asiento: D1 - D2','Dune 2'),
+(3,'https://m.media-amazon.com/images/M/MV5BY2U4M2NmY2ItMjAyNC00NzM1LTg3ZTEtNzVlYjEzNTE5NDI5XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Miercoles','4:30 a 6:00pm','Asiento: F4 - F5','Bob Marley'),
+(5,'https://m.media-amazon.com/images/I/9162HQDZznL._AC_UF894,1000_QL80_.jpg','Martes','2:30 a 4:00pm','Asiento: H7 - H8 - H9','Migration');
+
