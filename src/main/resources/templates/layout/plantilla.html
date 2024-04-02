@@ -37,12 +37,6 @@
                                 <ul class="dropdown-menu dropdown-menu-black">
                                     <li><a class="dropdown-item"  th:href="@{/(lang=es)}">ES</a></li>
                                     <li><a class="dropdown-item" th:href="@{/(lang=en)}">EN</a></li>
-                                </ul><ul class="navbar-nav" sec:authorize='!isAuthenticated()'>
-                                    <li class="nav-item px-2">
-                                        <a class="nav-link" th:href="@{/login}">
-                                            <i class="fa-regular fa-user"></i>
-                                        </a>
-                                    </li>
                                 </ul>
                             </li>                            
                         </ul>
