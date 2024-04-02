@@ -20,6 +20,8 @@ public class Reservas implements Serializable {
     private String fecha;
     private String horario;
     private String asiento;
-    private String descripcion;
-
+    private String titulo;
+    
+    
+    
 }

@@ -2,6 +2,7 @@ package com.cinefide.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -19,5 +20,7 @@ public class Cartelera implements Serializable{
     private String imagen;
     private String descripcion;
     private String horario;
+    
+    
     
 }

@@ -62,14 +62,14 @@ imagen  varchar(3000),
 fecha varchar(3000),
 horario varchar(3000),
 asiento varchar(3000),
-descripcion varchar(3000))
+titulo varchar(3000))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
-INSERT INTO cinefide.reservas(id_pelicula,imagen,fecha,horario,asiento,descripcion) VALUES
-(1,'https://m.media-amazon.com/images/M/MV5BN2QyZGU4ZDctOWMzMy00NTc5LThlOGQtODhmNDI1NmY5YzAwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Lunes','2:30 a 4:30pm','Asiento: D1 - D2','Dune 2'),
-(3,'https://m.media-amazon.com/images/M/MV5BY2U4M2NmY2ItMjAyNC00NzM1LTg3ZTEtNzVlYjEzNTE5NDI5XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Miercoles','4:30 a 6:00pm','Asiento: F4 - F5','Bob Marley'),
-(5,'https://m.media-amazon.com/images/I/9162HQDZznL._AC_UF894,1000_QL80_.jpg','Martes','2:30 a 4:00pm','Asiento: H7 - H8 - H9','Migration');
+INSERT INTO cinefide.reservas(id_pelicula,imagen,fecha,horario,asiento,titulo) VALUES
+(1,'https://m.media-amazon.com/images/M/MV5BN2QyZGU4ZDctOWMzMy00NTc5LThlOGQtODhmNDI1NmY5YzAwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Lunes','2:30 a 4:30pm','D1 - D2','Dune 2'),
+(3,'https://m.media-amazon.com/images/M/MV5BY2U4M2NmY2ItMjAyNC00NzM1LTg3ZTEtNzVlYjEzNTE5NDI5XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Miercoles','4:30 a 6:00pm','F4 - F5','Bob Marley'),
+(5,'https://m.media-amazon.com/images/I/9162HQDZznL._AC_UF894,1000_QL80_.jpg','Martes','2:30 a 4:00pm','H7 - H8 - H9','Migration');
 
 create table cinefide.horarios(
 id_pelicula int NOT NULL Auto_Increment primary key, 
@@ -82,12 +82,12 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 INSERT INTO cinefide.horarios(id_pelicula,titulo,imagen,fecha,horario,asiento) VALUES
-(1,'Dune 2','https://m.media-amazon.com/images/M/MV5BN2QyZGU4ZDctOWMzMy00NTc5LThlOGQtODhmNDI1NmY5YzAwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Lunes Viernes','L: 2:30 a 4:00 pm, 4:30 a 6:00 pm, V: 2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
-(2,'Kung Fu Panda 4','https://m.media-amazon.com/images/M/MV5BZDY0YzI0OTctYjVhYy00MTVhLWE0NTgtYTRmYTBmOTE3YTViXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX1000_.jpg','Miercoles','M: 2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
-(3,'Bob Marley','https://m.media-amazon.com/images/M/MV5BY2U4M2NmY2ItMjAyNC00NzM1LTg3ZTEtNzVlYjEzNTE5NDI5XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Miercoles','M: 2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
-(4,'Madame Web','https://m.media-amazon.com/images/M/MV5BYWJkY2Q4NmYtOGRlMi00YTg5LWE2ZmQtY2NkYzk3YTRmNWZlXkEyXkFqcGdeQXVyMTY3ODkyNDkz._V1_.jpg','Martes','K: 2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
-(5,'Migration','https://m.media-amazon.com/images/I/9162HQDZznL._AC_UF894,1000_QL80_.jpg','Martes','K: 2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
-(6,'Demon Slayer: Kimetsu No Yaiba - To the Hashira Training','https://m.media-amazon.com/images/M/MV5BNWFkNzI5NDQtY2QyZS00NGE2LWJiNDEtMTI5ZTFmNDE0ZjcwXkEyXkFqcGdeQXVyNjk1NzU1Mjk@._V1_FMjpg_UX1000_.jpg','Viernes','V: 2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
-(7,'Anyone But You Movie','https://pics.filmaffinity.com/Anyone_But_You-290348256-large.jpg','Lunes','L: 6:30 a 8:00 pm, 4:30 a 6:00 pm',''),
-(8,'The Iron Claw','https://m.media-amazon.com/images/M/MV5BOGE5NjllZTEtMGJjNy00ZTFmLThlNDItNmNiZTgyOTQ4OTA2XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg','Sabado','S: 9:30 a 12:00 AM',''),
-(9,'Imaginary','https://m.media-amazon.com/images/M/MV5BODIzOTJiODUtNzM2MC00YjdjLTg5YTktZWZhNjY1N2I5NWRjXkEyXkFqcGdeQXVyMjY5ODI4NDk@._V1_.jpg','Domingo','D: 2:30 a 4:00 pm, 6:30 a 8:00 pm','');
+(1,'Dune 2','https://m.media-amazon.com/images/M/MV5BN2QyZGU4ZDctOWMzMy00NTc5LThlOGQtODhmNDI1NmY5YzAwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Lunes Viernes','2:30 a 4:00 pm, 4:30 a 6:00 pm, 2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
+(2,'Kung Fu Panda 4','https://m.media-amazon.com/images/M/MV5BZDY0YzI0OTctYjVhYy00MTVhLWE0NTgtYTRmYTBmOTE3YTViXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX1000_.jpg','Miercoles','2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
+(3,'Bob Marley','https://m.media-amazon.com/images/M/MV5BY2U4M2NmY2ItMjAyNC00NzM1LTg3ZTEtNzVlYjEzNTE5NDI5XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Miercoles','2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
+(4,'Madame Web','https://m.media-amazon.com/images/M/MV5BYWJkY2Q4NmYtOGRlMi00YTg5LWE2ZmQtY2NkYzk3YTRmNWZlXkEyXkFqcGdeQXVyMTY3ODkyNDkz._V1_.jpg','Martes',' 2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
+(5,'Migration','https://m.media-amazon.com/images/I/9162HQDZznL._AC_UF894,1000_QL80_.jpg','Martes','2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
+(6,'Demon Slayer: Kimetsu No Yaiba - To the Hashira Training','https://m.media-amazon.com/images/M/MV5BNWFkNzI5NDQtY2QyZS00NGE2LWJiNDEtMTI5ZTFmNDE0ZjcwXkEyXkFqcGdeQXVyNjk1NzU1Mjk@._V1_FMjpg_UX1000_.jpg','Viernes','2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
+(7,'Anyone But You Movie','https://pics.filmaffinity.com/Anyone_But_You-290348256-large.jpg','Lunes','6:30 a 8:00 pm, 4:30 a 6:00 pm',''),
+(8,'The Iron Claw','https://m.media-amazon.com/images/M/MV5BOGE5NjllZTEtMGJjNy00ZTFmLThlNDItNmNiZTgyOTQ4OTA2XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg','Sabado','9:30 a 12:00 AM',''),
+(9,'Imaginary','https://m.media-amazon.com/images/M/MV5BODIzOTJiODUtNzM2MC00YjdjLTg5YTktZWZhNjY1N2I5NWRjXkEyXkFqcGdeQXVyMjY5ODI4NDk@._V1_.jpg','Domingo','2:30 a 4:00 pm, 6:30 a 8:00 pm','');
