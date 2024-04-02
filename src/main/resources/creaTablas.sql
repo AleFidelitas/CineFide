@@ -12,12 +12,19 @@ id_usuario int NOT NULL Auto_Increment primary key,
 username  varchar(50) UNIQUE,    
 nombre  varchar(50), 
 apellidos  varchar(100),
-contrasena  varchar(50), 
+password  varchar(512), 
 correo  varchar(100) UNIQUE, 
-fecha varchar(30),
-tipo INT DEFAULT 1)
+telefono VARCHAR(15) NULL,
+ruta_imagen varchar(1024))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
+
+/*Se insertan 3 registros en la tabla cliente como ejemplo */
+INSERT INTO cinefide.usuario (username,password,nombre, apellidos, correo, telefono,ruta_imagen) VALUES 
+('juan','$2a$10$P1.w58XvnaYQUQgZUCk4aO/RTRl8EValluCqB3S2VMLTbRt.tlre.','Juan', 'Castro Mora',    'jcastro@gmail.com',    '4556-8978', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Juan_Diego_Madrigal.jpg/250px-Juan_Diego_Madrigal.jpg'),
+('rebeca','$2a$10$GkEj.ZzmQa/aEfDmtLIh3udIH5fMphx/35d0EYeqZL5uzgCJ0lQRi','Rebeca',  'Contreras Mora', 'acontreras@gmail.com', '5456-8789','https://upload.wikimedia.org/wikipedia/commons/0/06/Photo_of_Rebeca_Arthur.jpg'),
+('pedro','$2a$10$koGR7eS22Pv5KdaVJKDcge04ZB53iMiw76.UjHPY.XyVYlYqXnPbO','Pedro', 'Mena Loria',     'lmena@gmail.com',      '7898-8936','https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Eduardo_de_Pedro_2019.jpg/480px-Eduardo_de_Pedro_2019.jpg?20200109230854');
+
 
 create table cinefide.cartelera(
 id_pelicula int NOT NULL Auto_Increment primary key, 
@@ -71,3 +78,18 @@ INSERT INTO cinefide.reservas(id_pelicula,imagen,fecha,horario,asiento,descripci
 (3,'https://m.media-amazon.com/images/M/MV5BY2U4M2NmY2ItMjAyNC00NzM1LTg3ZTEtNzVlYjEzNTE5NDI5XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Miercoles','4:30 a 6:00pm','Asiento: F4 - F5','Bob Marley'),
 (5,'https://m.media-amazon.com/images/I/9162HQDZznL._AC_UF894,1000_QL80_.jpg','Martes','2:30 a 4:00pm','Asiento: H7 - H8 - H9','Migration');
 
+
+create table cinefide.rol (
+  id_rol INT NOT NULL AUTO_INCREMENT,
+  nombre varchar(20),
+  id_usuario int,
+  PRIMARY KEY (id_rol),
+  foreign key fk_rol_usuario (id_usuario) references usuario(id_usuario)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+insert into cinefide.rol (id_rol, nombre, id_usuario) values
+ (1,'ROLE_ADMIN',1), (2,'ROLE_VENDEDOR',1), (3,'ROLE_USER',1),
+ (4,'ROLE_VENDEDOR',2), (5,'ROLE_USER',2),
+ (6,'ROLE_USER',3);

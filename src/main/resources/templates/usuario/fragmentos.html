@@ -13,7 +13,7 @@
     <section th:fragment="iniciarSesion" class="py-4 mb-4 bg-light">
         <div class="container col-4 shadow">
             <div class=" d-flex align-items-center justify-content-center" style="height: 400px;">
-                <form th:action="@{/usuario/iniciarSesion}" th:object="${usuario}" method="POST"
+                <form th:action="@{/login}" method="POST"
                     class="was-validated w-75" enctype="multipart/form-data">
                     <div class="mb-4 text-center">
                         <h1 class="text-shadow">[[#{usuario.iniciarsesion}]]</h1>
@@ -27,7 +27,7 @@
 
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" placeholder="Contraseña" required="true"
-                            name="contrasena">
+                            name="password">
                         <label for="floatingPassword">[[#{usuario.contrasena}]]</label>
                     </div>
                     <div th:if="${param.errorPass}">
