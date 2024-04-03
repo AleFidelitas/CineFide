@@ -5,23 +5,29 @@ import java.util.List;
 
 public interface UsuarioService {
     
-    //se define la firma del metodo para obtener los registros de usuario
-    public List<Usuario> getUsuario(boolean activo);
+    // Se obtiene un listado de usuarios en un List
+    public List<Usuario> getUsuarios();
     
-    
-    
-    //trae registro por id 
+    // Se obtiene un Usuario, a partir del id de un usuario
     public Usuario getUsuario(Usuario usuario);
+    
+    // Se obtiene un Usuario, a partir del username de un usuario
+    public Usuario getUsuarioPorUsername(String username);
 
-    //trae registro por username
-    Usuario getByUsername(String username);
+    // Se obtiene un Usuario, a partir del username y el password de un usuario
+    public Usuario getUsuarioPorUsernameYPassword(String username, String password);
     
-    //si id usuario tiene un valor, se modifica ese registro
-    //si idusuario no tiene un valor se inserta un nuevo registro
-    public void save(Usuario usuario);
+    // Se obtiene un Usuario, a partir del username y el password de un usuario
+    public Usuario getUsuarioPorUsernameOCorreo(String username, String correo);
     
-    //se eimina el registro que tenga el valor del idusuario que trae
-    public void delete (Usuario usuario);
+    // Se valida si existe un Usuario considerando el username
+    public boolean existeUsuarioPorUsernameOCorreo(String username, String correo);
     
+    // Se inserta un nuevo usuario si el id del usuario esta vacío
+    // Se actualiza un usuario si el id del usuario NO esta vacío
+    public void save(Usuario usuario,boolean crearRolUser);
+    
+    // Se elimina el usuario que tiene el id pasado por parámetro
+    public void delete(Usuario usuario);
     
 }

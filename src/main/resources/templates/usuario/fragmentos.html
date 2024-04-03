@@ -13,7 +13,7 @@
     <section th:fragment="iniciarSesion" class="py-4 mb-4 bg-light">
         <div class="container col-4 shadow">
             <div class=" d-flex align-items-center justify-content-center" style="height: 400px;">
-                <form th:action="@{/usuario/iniciarSesion}" th:object="${usuario}" method="POST"
+                <form th:action="@{/login}" method="POST"
                     class="was-validated w-75" enctype="multipart/form-data">
                     <div class="mb-4 text-center">
                         <h1 class="text-shadow">[[#{usuario.iniciarsesion}]]</h1>
@@ -27,7 +27,7 @@
 
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" placeholder="Contraseña" required="true"
-                            name="contrasena">
+                            name="password">
                         <label for="floatingPassword">[[#{usuario.contrasena}]]</label>
                     </div>
                     <div th:if="${param.errorPass}">
@@ -41,9 +41,8 @@
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <a class="text-reset text-decoration-none fw-bold small" href="#">[[#{accion.recuperar}]]</a>
-                        <a class="text-reset text-decoration-none fw-bold small"
-                            th:href="@{/usuario/crear}">[[#{accion.crearCuenta}]]</a>
+                        <a class="text-reset text-decoration-none fw-bold small" th:href="@{/registro/recordar}">[[#{accion.recuperar}]]</a>
+                        <a class="text-reset text-decoration-none fw-bold small" th:href="@{/registro/nuevo}">[[#{accion.crearCuenta}]]</a>
                     </div>
                 </form>
             </div>
@@ -56,7 +55,7 @@
     <section th:fragment="crearUsuario" class="py-4 mb-4 bg-light">
         <div class="container col-4 shadow">
             <div class=" d-flex align-items-center justify-content-center">
-                <form id="formCrearUsuario" th:action="@{/usuario/guardar}" th:object="${usuario}" method="POST" class="was-validated w-75"
+                <form id="formCrearUsuario" th:action="@{/registro/crearUsuario}" th:object="${usuario}" method="POST" class="was-validated w-75"
                     enctype="multipart/form-data">
                     <div class="mb-4 text-center">
                         <h1 class="text-shadow">[[#{usuario.crearUsuario}]]</h1>
@@ -78,13 +77,13 @@
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" placeholder="Contraseña" required="true"
-                            name="contrasena">
-                        <label for="contrasena">[[#{usuario.contrasena}]]</label>
+                            name="password">
+                        <label for="password">[[#{usuario.contrasena}]]</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" placeholder="Repetir Contraseña" required="true"
-                            name="rcontrasena">
-                        <label for="rcontrasena">[[#{usuario.contrasena2}]]</label>
+                            name="rpassword">
+                        <label for="rpassword">[[#{usuario.contrasena2}]]</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control" placeholder="name@example.com" required="true"
@@ -92,8 +91,8 @@
                         <label for="correo">[[#{usuario.correoElectronico}]]</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="date" class="form-control" required="true" name="fecha">
-                        <label for="fecha">[[#{usuario.fechaN}]]</label>
+                        <input type="number" class="form-control" required="true" name="telefono">
+                        <label for="fecha">[[#{usuario.telefono}]]</label>
                     </div>
 
                     <div class="mb-3">
@@ -247,7 +246,102 @@
         </div>
     </section>
 </body>
+    
+     <!-- 6 Fragmento que se utiliza recordar la pagina salida -->
+        <section th:fragment="unaSalida">
+          <div class="row py-2 justify-content-center">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header align-items-center">
+                        [[${titulo}]]
+                    </div>
+                    <div class="card-body">
+                        <strong>[[${mensaje}]]</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+<!-- 7 Fragmento que se utiliza recordar un usuario -->
+        <section th:fragment="recordarUsuario">
+            <div class="row py-2 justify-content-center">
+                <div class="col-md-3">
+                    <section>
+                        <div class="col-md-4 d-grid">
+                            <a th:href="@{/login}" class="btn btn-primary">
+                                <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="row py-2 justify-content-center">
+                <div class="col-md-3">
+                    <form method="POST"
+                          th:action="@{/registro/recordarUsuario}" th:object="${usuario}"
+                          class="was-validated">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{registro.recordar.us}]]</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="username">[[#{usuario.username}]]</label>
+                                    <input type="text" class="form-control" name="username" th:field="*{username}"/></div>                                                
+                                <div class="mb-3">
+                                    <label for="email">[[#{usuario.correo}]]</label>
+                                    <input type="email" class="form-control" name="correo" th:field="*{correo}"/></div>
+                            </div>
+                            <div class="card-footer text-end">                                                
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-address-card"></i> [[#{registro.recordar.us}]]
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
 
+<!-- 2 Fragmento que se utiliza activar un usuario -->
+        <section th:fragment="activarUsuario">
+            <div class="row py-2 justify-content-center">
+                <div class="col-md-3">
+                    <form method="POST" th:action="@{/registro/activar}" th:object="${usuario}" class="was-validated" enctype="multipart/form-data">
+                        <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
+                        <div class="card">
+                            <div class="card-header align-items-center">
+                                <h4>[[#{registro.activar}]]</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3 d-none">
+                                    <label for="username">[[#{usuario.username}]]</label>
+                                    <input type="text" class="form-control" name="username" th:field="*{username}" required="true"/></div>
+                                <div class="mb-3 d-none">
+                                    <label for="nombre">[[#{usuario.nombre}]]</label>
+                                    <input type="text" class="form-control" name="nombre" th:field="*{nombre}" required="true"/></div>
+                                <div class="mb-3 d-none">
+                                    <label for="apellidos">[[#{usuario.apellidos}]]</label>
+                                    <input type="text" class="form-control" name="apellidos" th:field="*{apellidos}" required="true"/></div>
+                                <div class="mb-3 d-none">
+                                    <label for="email">[[#{usuario.correo}]]</label>
+                                    <input type="email" class="form-control" name="correo" th:field="*{correo}" required="true"/></div>
+                                <div class="mb-3 d-none">
+                                    <label for="telefono">[[#{usuario.telefono}]]</label>
+                                    <input type="tel" class="form-control" name="telefono" th:field="*{telefono}"/></div>
+                                <div class="mb-3">
+                                    <label for="password">[[#{usuario.passwordnew}]]</label>
+                                    <input type="password" class="form-control" name="password" th:field="*{password}"/></div>                                             
+                            </div>
+                            <div class="card-footer align-items-center">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-check"></i> [[#{usuario.activacion}]]
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
 
 </html>

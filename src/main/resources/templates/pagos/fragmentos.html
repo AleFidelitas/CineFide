@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{layout/plantilla :: head}">
+    <title>CineFide</title>
+</head>
+
+<body>
+    <!-- 1 metodos-->
+    <section th:fragment="metodos" class="py-4 mb-4 bg-light">
+        <div class="container-md">
+            <form th:action="@{/pagos/confirmacion}" method="POST" class="was-validated" enctype="multipart/form-data">
+                <div class="row justify-content-center">
+                    <div class="col-md-4 ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNWFkNzI5NDQtY2QyZS00NGE2LWJiNDEtMTI5ZTFmNDE0ZjcwXkEyXkFqcGdeQXVyNjk1NzU1Mjk@._V1_FMjpg_UX1000_.jpg"
+                            width="70%" class="mx-auto d-block" alt="Pelicula seleccionada">
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class=" d-flex justify-content-between">
+                            <h3 class="m-2">The Roar of Victory</h3>
+                            <h5 class="m-2">6:00pm</h5>
+                        </div>
+
+                        <div class="align-items-center justify-content-center d-flex border mt-5 w-100 h-75">
+
+                            <div class="w-100">
+                                <div class="form-floating m-3">
+                                    <input type="text" class="form-control" placeholder="Dijita tu usuario"
+                                        required="true" name="tarjeta">
+                                    <label for="tarjeta">[[#{pagos.tarjeta}]]</label>
+                                </div>
+
+                                <div class="form-floating m-3">
+                                    <input type="number" class="form-control" placeholder="Dijita tu usuario"
+                                        required="true" name="numTarjeta">
+                                    <label for="numTarjeta">[[#{pagos.numtarjeta}]]</label>
+                                </div>
+
+                                <div class="form-floating m-3">
+                                    <input type="password" class="form-control" placeholder="Dijita tu usuario"
+                                        required="true" name="pinTarjeta">
+                                    <label for="pinTtarjeta">[[#{pagos.pintarjeta}]]</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-end mt-3">
+                    <div class="col-md-4 text-md-right">
+                        <button type="submit" class="btn btn-danger"><i class="fa-regular fa-credit-card mr-3"></i>
+                            [[#{pagos.pagar}]]</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- confirmacion-->
+    <section th:fragment="confirmacion" class="py-4 mb-4 bg-light">
+        <div class="container-md bg-light d-flex align-items-center justify-content-center">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">[[#{pagos.exitosa}]]</h5> <!-- Título de la tarjeta -->
+                    <p class="card-text">[[#{pagos.mensaje}]]</p> <!-- Cuerpo de texto -->
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
