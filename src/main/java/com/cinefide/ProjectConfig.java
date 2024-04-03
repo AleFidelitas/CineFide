@@ -55,28 +55,21 @@ public class ProjectConfig implements WebMvcConfigurer {
     //en este metodo se establece la estructura de seguridad del sitio
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((request) -> 
-                request.requestMatchers("/","/login","/js/**","webjars/**","/registro/**", "/cartelera/**",
-                        "/proximosestrenos/**", "/pagos/**")
-                        .permitAll()
-                .requestMatchers("/categoria/listado")
-                        .hasRole("VENDEDOR")
-                .requestMatchers("/categoria/nuevo")
-                        .hasRole("ADMIN")
-                .requestMatchers("/facturar/carrito", "/reservas/**", "/reservas/modifica/**")
-                        .hasRole("USER")
-        ).formLogin((form) -> form.loginPage("/login").permitAll()).logout((logout) ->logout.permitAll());
+//        http.authorizeHttpRequests((request) -> 
+//                request.requestMatchers("/","/login","/js/**","webjars/**","/registro/**", "/horarios/**", "/cartelera/**",
+//                        "/proximosestrenos/**","/promocion/**","/valoracion/**", "/usuario/**","/reservas/**" )
+//                        .permitAll()
+//                .requestMatchers("/usuario/**" )
+//                        .hasRole("VENDEDOR")
+//                .requestMatchers("/usuario/**" )
+//                        .hasRole("ADMIN")
+//                .requestMatchers( "/reservas/modifica/**", "/pagos/**", "/usuario/**" )
+//                        .hasRole("USER")
+//        ).formLogin((form) -> form.loginPage("/login").permitAll()).logout((logout) ->logout.permitAll());
         
         return http.build();
     }
-    //no se usa en produccion
-//    @Bean
-//    public UserDetailsService users(){
-//        UserDetails admin = User.builder().username("juan").password("{noop}123").roles("USER","VENDEDOR","ADMIN").build();
-//        UserDetails vendedor = User.builder().username("rebeca").password("{noop}456").roles("USER","VENDEDOR").build();
-//        UserDetails usuario = User.builder().username("usuario").password("{noop}789").roles("USER").build(); 
-//        return new InMemoryUserDetailsManager(usuario,vendedor,admin);
-//    }
+
     
     
     @Autowired
