@@ -1,18 +1,55 @@
 <!DOCTYPE html>
-<html
+<html 
     xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
+    xmlns:th="http://www.thymeleaf.org"    
+    >
     <head th:replace="~{layout/plantilla :: head}">
-        <title>LaPagina</title>
-        <meta charset="UTF-8"/>
-
+        <title>CineFide</title>
     </head>
 
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
-        
-        <footer th:replace="~{layout/plantilla :: footer}"/>
-        
 
+        <div style="height: 20px;"></div>
+        <h4 class="text-center text-black mb-4">Cartelera</h4>
+        <div style="height: 5px;"></div>
+        <h4 class="text-center text-black mb-4"></h4>
+        <section th:replace="~{cartelera/fragmentos :: carteleraSlides}"/>
+        <div style="height: 20px;"></div>
+        <h4 class="text-center text-black mb-4"> </h4>
+        
+        <div style="height: 20px;"></div>
+        <h4 class="text-center text-black mb-4">Próximos Estrenos</h4>
+        <div style="height: 5px;"></div>
+        <h4 class="text-center text-black mb-4"></h4>
+        <section th:replace="~{proximosEstrenos/fragmentos :: estrenosSlides}"/>
+
+        
+        <div style="height: 50px;"></div>
+        <h4 class="text-center text-black mb-4">Promociones</h4>
+        <div style="height: 20px;"></div>
+        <section th:replace="~{promocion/fragmentos :: listadoPromocionPaginaPrincipal}"/>
+        <div style="height: 30px;"></div>
+        <h4 class="text-center text-black mb-4"></h4>
+        
+        <footer th:fragment="footer" class="bg-dark text-warning py-1">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-auto text-center">
+                        <p>¡Síguenos en nuestras redes sociales!</p>
+                        <a href="https://facebook.com" class="text-warning me-3" target="_blank">
+                            <i class="fa-brands fa-facebook" style="font-size: 35px"></i>
+                        </a>
+                        <a href="https://instagram.com" class="text-warning me-3" target="_blank">
+                            <i class="fa-brands fa-instagram" style="font-size: 35px"></i>
+                        </a>
+                        <a href="https://tiktok.com" class="text-warning" target="_blank">
+                            <i class="fa-brands fa-tiktok" style="font-size: 35px"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <footer th:replace="~{layout/plantilla :: footer}"/>    
+        </footer>
     </body>
 </html>
