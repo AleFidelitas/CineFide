@@ -15,7 +15,7 @@ apellidos  varchar(100),
 password  varchar(512), 
 correo  varchar(100) UNIQUE, 
 telefono VARCHAR(15) NULL,
-ruta_imagen varchar(1024))
+ruta_imagen VARCHAR(1024) DEFAULT 'https://www.4x4.ec/overlandecuador/wp-content/uploads/2017/06/default-user-icon-8.jpg')
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
@@ -127,7 +127,7 @@ INSERT INTO cinefide.horarios(id_pelicula,titulo,imagen,fecha,horario,asiento) V
 (4,'Madame Web','https://m.media-amazon.com/images/M/MV5BYWJkY2Q4NmYtOGRlMi00YTg5LWE2ZmQtY2NkYzk3YTRmNWZlXkEyXkFqcGdeQXVyMTY3ODkyNDkz._V1_.jpg','Martes',' 2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
 (5,'Migration','https://m.media-amazon.com/images/I/9162HQDZznL._AC_UF894,1000_QL80_.jpg','Martes','2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
 (6,'Demon Slayer: Kimetsu No Yaiba - To the Hashira Training','https://m.media-amazon.com/images/M/MV5BNWFkNzI5NDQtY2QyZS00NGE2LWJiNDEtMTI5ZTFmNDE0ZjcwXkEyXkFqcGdeQXVyNjk1NzU1Mjk@._V1_FMjpg_UX1000_.jpg','Viernes','2:30 a 4:00 pm, 4:30 a 6:00 pm',''),
-(7,'Anyone But You Movie','https://pics.filmaffinity.com/Anyone_But_You-290348256-large.jpg','Lunes','6:30 a 8:00 pm, 4:30 a 6:00 pm',''),
+(7,'Anyone But You Movie','https://m.media-amazon.com/images/M/MV5BYmQ2MmY2MmYtMjUzOS00Y2MyLWE4YmQtYzIzYWQ4OTdmMGU0XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg','Lunes','6:30 a 8:00 pm, 4:30 a 6:00 pm',''),
 (8,'The Iron Claw','https://m.media-amazon.com/images/M/MV5BOGE5NjllZTEtMGJjNy00ZTFmLThlNDItNmNiZTgyOTQ4OTA2XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg','Sabado','9:30 a 12:00 AM',''),
 (9,'Imaginary','https://m.media-amazon.com/images/M/MV5BODIzOTJiODUtNzM2MC00YjdjLTg5YTktZWZhNjY1N2I5NWRjXkEyXkFqcGdeQXVyMjY5ODI4NDk@._V1_.jpg','Domingo','2:30 a 4:00 pm, 6:30 a 8:00 pm','');
 

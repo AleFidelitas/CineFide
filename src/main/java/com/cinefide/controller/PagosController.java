@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/pagos")
@@ -22,7 +23,13 @@ public class PagosController {
     }
 
     @PostMapping("/confirmacion")
-    public String confirmacion() {
+    public String confirmacion(@RequestParam("tarjeta") String tarjeta,
+                               @RequestParam("numTarjeta") String numTarjeta,
+                               @RequestParam("tnombPelicula") String nombPelicula,
+                               @RequestParam("tasientosPelicula") String asientosPelicula,
+                               @RequestParam("tcostoPelicula") String costoPelicula,
+                               @RequestParam("thoraPelicula") String horaPelicula) {
+        // System.out.println("Tarjeta: " + tarjeta);
 
         return "/pagos/confirmacion";
     }

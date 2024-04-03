@@ -130,7 +130,7 @@
                                             <th>[[#{usuario.nombre}]]</th>
                                             <th>[[#{usuario.apellidos}]]</th>
                                             <th>[[#{usuario.correo}]]</th>
-                                            <th>[[#{usuario.fecha}]]</th>
+                                            <th>[[#{usuario.telefono}]]</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -141,7 +141,7 @@
                                             <td>[[${usuario.nombre}]]</td>
                                             <td>[[${usuario.apellidos}]]</td>
                                             <td>[[${usuario.correo}]]</td>
-                                            <td>[[${usuario.fecha}]]</td>
+                                            <td>[[${usuario.telefono}]]</td>
                                             <td><a th:href="@{/usuario/eliminar/}+${usuario.idUsuario}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
@@ -240,7 +240,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <button type="button" class="btn btn-primary"
-                                th:onclick="window.location.href='/usuario/crear'">[[#{accion.crearCuenta}]]</button>
+                                th:onclick="window.location.href='/registro/nuevo'">[[#{accion.crearCuenta}]]</button>
                     </div>
                 </div>
             </div>
