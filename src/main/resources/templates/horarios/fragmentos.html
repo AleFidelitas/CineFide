@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>CineFide</title>
+    </head>
+    <body>
+        <!-- 1 Sección para crear el boton de agregar promociones... llamará a una ventana modal-->
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarHorarios">
+                            <i class="fas fa-plus"></i> [[#{horarios.agregar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2 Fragmento para agregar horarios, es la ventana modal -->
+        <section th:fragment="agregarHorarios">
+            <div id="agregarHorarios" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">[[#{horarios.agregar}]]</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/reservas/guardar}" th:object="${reservas}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-4">
+                                    <label for="titulo">[[#{horarios.titulo}]]</label>
+                                    <input type="text" class="form-control" name="titulo" required="true"/>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="fecha">[[#{horarios.fecha}]]</label>
+                                    <input type="text" class="form-control" name="fecha" required="true"/>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="horario">[[#{horarios.horario}]]</label>
+                                    <input type="text" class="form-control" name="horario" required="true"/>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="asiento">[[#{horarios.asiento}]]</label>
+                                    <input type="text" class="form-control" name="asiento" required="true"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 Sección principal para mostrar la informaccion de la entidad horarios -->
+        <section th:fragment="listadoHorarios" id="horarios">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{horarios.listado}]]</h4>
+                            </div>
+                            <div th:if="${horarios != null and !horarios.empty}">
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-dark">
+                                        <tr><th></th>
+                                            <th>[[#{horarios.titulo}]]</th>
+                                            <th></th>
+                                            <th>[[#{horarios.fecha}]]</th>
+                                            <th>[[#{horarios.horario}]]</th>
+
+                                            <th></th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="horarios, contador : ${horarios}">
+
+                                            <td class="col-md-4">
+                                                <img th:src="${horarios.imagen}" class="card-img img-fluid rounded-start h-50 w-50"style="object-fit: cover;"/>
+                                            </td><td>[[${contador.count}]]</td>
+                                            <td>[[${horarios.titulo}]]</td>
+                                            <td>[[${horarios.fecha}]]</td>
+                                            <td>[[${horarios.horario}]]</td>
+                                            <td></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${horarios == null or horarios.empty}">
+                                <span>[[#{lista.vacia}]]</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center bg-success text-white mb-3">
+                            <div class="card-body">
+                                <h3>[[#{horarios.total}]]</h3>
+                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalHorarios}]]</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+
+<!-- 4 Fragmento que se utiliza en la página modifca.html -->
+<section th:fragment="editarReservas">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form method="POST"
+                  th:action="@{/reservas/guardar}" 
+                  th:object="${horarios}"
+                  class="was-validated"                          
+                  enctype="multipart/form-data">
+                <input type="hidden" name="idPelicula" th:field="*{idPelicula}"/>
+                <input type="hidden" name="imagen" th:field="*{imagen}"/>
+                <section th:replace="~{reservas/fragmentos :: botonesEditar}"/>
+                <div id=details>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>[[#{accion.actualizar}]]</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="titulo">[[#{horarios.titulo}]]</label>
+                                            <input type="text" class="form-control" 
+                                                   name="titulo" th:field="*{titulo}"
+                                                   required="true">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="fecha">[[#{horarios.fecha}]]</label>
+                                            <input type="text" class="form-control" 
+                                                   name="fecha" th:field="*{fecha}"
+                                                   required="true">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="horario">[[#{horarios.horario}]]</label>
+                                            <input type="text" class="form-control" 
+                                                   name="horario" th:field="*{horario}"
+                                                   required="true">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="asiento">[[#{horarios.asiento}]]</label>
+                                            <input type="text" class="form-control" 
+                                                   name="asiento" th:field="*{asiento}"
+                                                   required="true">
+                                        </div>
+                                        <div class="mb-3">
+                                            <img id="imagen" th:src="@{${reservas.imagen}}" alt="your image" height="200"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</section>
