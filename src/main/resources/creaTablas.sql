@@ -95,20 +95,24 @@ INSERT INTO cinefide.valoracion(id_pelicula,titulo,imagen,descripcion,horario) V
 (7,'Anyone But You Movie','https://m.media-amazon.com/images/M/MV5BYmQ2MmY2MmYtMjUzOS00Y2MyLWE4YmQtYzIzYWQ4OTdmMGU0XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg','Bea y Ben parecen la pareja perfecta, pero después de una primera cita increíble, sucede algo que frena su atracción. Hasta que inesperadamente se juntan en una boda en Australia.','L: 6:30 a 8:00 pm, 4:30 a 6:00 pm'),
 (8,'The Iron Claw','https://m.media-amazon.com/images/M/MV5BOGE5NjllZTEtMGJjNy00ZTFmLThlNDItNmNiZTgyOTQ4OTA2XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg','Una familia de luchadores que se enfrentan en el ring deben lidiar con una serie de tragedias personales.','S: 9:30 a 12:00 AM'),
 (9,'Imaginary','https://m.media-amazon.com/images/M/MV5BODIzOTJiODUtNzM2MC00YjdjLTg5YTktZWZhNjY1N2I5NWRjXkEyXkFqcGdeQXVyMjY5ODI4NDk@._V1_.jpg','Una mujer regresa con su familia a la casa donde creció. Su hija menor pronto se encariña con un osito de peluche que encuentra en el sótano. Aunque la interacción parece divertida, la situación pronto se vuelve siniestra.','D: 2:30 a 4:00 pm, 6:30 a 8:00 pm');
+
 create table cinefide.reservas(
-id_pelicula int NOT NULL Auto_Increment primary key, 
-imagen  varchar(3000),
-fecha varchar(3000),
-horario varchar(3000),
-asiento varchar(3000),
-titulo varchar(3000))
+id_reserva int NOT NULL Auto_Increment primary key, 
+imagen  varchar(300),
+fecha varchar(300),
+horario varchar(300),
+asiento varchar(300),
+titulo varchar(300),
+estado varchar(30) DEFAULT 'pendiente',
+id_usuario int
+)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
-INSERT INTO cinefide.reservas(id_pelicula,imagen,fecha,horario,asiento,titulo) VALUES
-(1,'https://m.media-amazon.com/images/M/MV5BN2QyZGU4ZDctOWMzMy00NTc5LThlOGQtODhmNDI1NmY5YzAwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Lunes','2:30 a 4:30pm','D1 - D2','Dune 2'),
-(3,'https://m.media-amazon.com/images/M/MV5BY2U4M2NmY2ItMjAyNC00NzM1LTg3ZTEtNzVlYjEzNTE5NDI5XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Miercoles','4:30 a 6:00pm','F4 - F5','Bob Marley'),
-(5,'https://m.media-amazon.com/images/I/9162HQDZznL._AC_UF894,1000_QL80_.jpg','Martes','2:30 a 4:00pm','H7 - H8 - H9','Migration');
+INSERT INTO cinefide.reservas(id_reserva,imagen,fecha,horario,asiento,titulo,id_usuario) VALUES
+(1,'https://m.media-amazon.com/images/M/MV5BN2QyZGU4ZDctOWMzMy00NTc5LThlOGQtODhmNDI1NmY5YzAwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Lunes','2:30 a 4:30pm','D1 - D2','Dune 2',1),
+(2,'https://m.media-amazon.com/images/M/MV5BY2U4M2NmY2ItMjAyNC00NzM1LTg3ZTEtNzVlYjEzNTE5NDI5XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg','Miercoles','4:30 a 6:00pm','F4 - F5','Bob Marley',1),
+(3,'https://m.media-amazon.com/images/I/9162HQDZznL._AC_UF894,1000_QL80_.jpg','Martes','2:30 a 4:00pm','H7 - H8 - H9','Migration',1);
 
 create table cinefide.horarios(
 id_pelicula int NOT NULL Auto_Increment primary key, 

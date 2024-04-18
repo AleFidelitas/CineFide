@@ -11,6 +11,8 @@ public interface ReservasService {
 
     //trae registro por id 
     public Reservas getReservas(Reservas reservas);
+    
+    public List<Reservas> getReservasByIdUsuario(Long IdUsuario);
 
     //si id promocion tiene un valor, se modifica ese registro
     //si idpromocion no tiene un valor se inserta un nuevo registro

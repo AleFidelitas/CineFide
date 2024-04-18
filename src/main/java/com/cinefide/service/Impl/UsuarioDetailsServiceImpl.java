@@ -43,6 +43,14 @@ public class UsuarioDetailsServiceImpl
         
         session.removeAttribute("usuarioImagen");
         session.setAttribute("usuarioImagen", usuario.getRutaImagen());
+        
+        //tambien guardo en eseion el idUsuario
+        session.removeAttribute("idUsuario");
+        session.setAttribute("idUsuario", usuario.getIdUsuario());
+        
+//        System.out.println("papasfritas" + usuario.getIdUsuario());
+        
+        
         //se recuperan los role ddel usuario y se transforman 
         //en roles de seguridad del sistema
         var roles= new ArrayList<GrantedAuthority>();

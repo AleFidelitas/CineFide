@@ -2,6 +2,7 @@ package com.cinefide.controller;
 
 import com.cinefide.domain.Reservas;
 import com.cinefide.service.ReservasService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,34 +15,56 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ReservasController {
 
     @Autowired
+    private HttpSession session;
+
+    @Autowired
     private ReservasService reservasService;
 
     @GetMapping("/listado")
     public String listado(Model model) {
-        var lista = reservasService.getReservas(false);
+        // Long idUsuario = 8L;
+        Long idUsuario = (Long) session.getAttribute("idUsuario");
+//        System.out.println(idUsuario);
+        var lista = reservasService.getReservasByIdUsuario(idUsuario);
         model.addAttribute("reservas", lista);
         model.addAttribute("totalReservas", lista.size());
-
         return "/reservas/listado";
     }
 
     @PostMapping("/guardar")
     public String guardar(Reservas reservas) {
-
+        Long idUsuario = (Long) session.getAttribute("idUsuario");
+        reservas.setIdUsuario(idUsuario);
+        System.out.println(reservas);
+        String imagen = reservas.getImagen();
+        if (imagen == null || imagen.isEmpty()) {
+            reservas.setImagen("https://www.anahuac.mx/generacion-anahuac/sites/default/files/articles/SalaDeCine.jpg");
+        }
+        String estado = reservas.getEstado();
+        if (estado == null || estado.isEmpty()) {
+            reservas.setEstado("pendiente");
+        }
+        System.out.println(reservas);
         reservasService.save(reservas);
         return "redirect:/reservas/listado";
     }
 
-    @GetMapping("/modificar/{idPelicula}")
+    @GetMapping("/modificar/{idReserva}")
     public String modifica(Reservas reservas, Model model) {
         reservas = reservasService.getReservas(reservas);
         model.addAttribute("reservas", reservas);
         return "/reservas/modifica";
     }
 
-    @GetMapping("/eliminar/{idPelicula}")
+    @GetMapping("/eliminar/{idReserva}")
     public String elimina(Reservas reservas) {
         reservasService.delete(reservas);
         return "redirect:/reservas/listado";
     }
+
+//        @GetMapping("/eliminar/{idReserva}")
+//    public String elimina(Reservas reservas) {
+//        reservasService.delete(reservas);
+//        return "redirect:/reservas/listado";
+//    }
 }

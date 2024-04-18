@@ -13,15 +13,14 @@ public class Reservas implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPelicula")
-    private Long idPelicula;
+    @Column(name = "idReserva")
+    private Long idReserva;
 
     private String imagen;
+    private String estado;
     private String fecha;
     private String horario;
     private String asiento;
     private String titulo;
-    
-    
-    
+    private Long idUsuario;
 }
