@@ -39,26 +39,49 @@
                         <form th:action="@{/reservas/guardar}" th:object="${reservas}"
                               method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
-                                <div class="mb-4">
-                                    <label for="titulo">[[#{horarios.titulo}]]</label>
-                                    <input type="text" class="form-control" name="titulo" required="true"/>
+                                <div class="modal-body">
+                                    <div class="mb-4">
+                                        <label for="fecha">[[#{reservas.titulo}]]</label>
+                                        <select class="form-control" name="titulo" required="true">
+                                            <option value="Dune 2">Dune 2</option>
+                                            <option value="Kung Fu Panda 4">Kung Fu Panda 4</option>
+                                            <option value="Bob Marley">Bob Marley</option>
+                                            <option value="Madame Web">Madame Web</option>
+                                            <option value="Migration">Migration</option>
+                                            <option value="Demon Slayer: Kimetsu No Yaiba - To the Hashira Training">Demon Slayer: Kimetsu No Yaiba - To the Hashira Training</option>
+                                            <option value="Anyone But You Movie">Anyone But You Movie</option>
+                                            <option value="The Iron Claw">The Iron Claw</option>
+                                            <option value="Imaginary">Imaginary</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                    <label for="fecha">[[#{reservas.fecha}]]</label>
+                                    <select class="form-control" name="fecha" required="true">
+                                        <option value="Lunes">Lunes</option>
+                                        <option value="Martes">Martes</option>
+                                        <option value="Miercoles">Miercoles</option>
+                                        <option value="Viernes">Viernes</option>
+                                        <option value="Sabado">Sabado</option>
+                                        <option value="Domingo">Domingo</option>
+                                    </select>
                                 </div>
-                                <div class="mb-4">
-                                    <label for="fecha">[[#{horarios.fecha}]]</label>
-                                    <input type="text" class="form-control" name="fecha" required="true"/>
+                                    <div class="mb-4">
+                                        <label for="fecha">[[#{reservas.horario}]]</label>
+                                        <select class="form-control" name="horario" required="true">
+                                            <option value="9:30 am a 12:00 pm">9:30 am a 12:00 pm</option>
+                                            <option value="2:30 pm a 4:00 pm">2:30 pm a 4:00 pm</option>
+                                            <option value=" 4:30 pm a 6:00 pm">4:30 pm a 6:00 pm</option>
+                                            <option value="6:30 pm a 8:00 pm">6:30 pm a 8:00 pm</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="asiento">[[#{horarios.asiento}]]</label>
+                                        <input type="text" class="form-control" name="asiento" required="true"/>
+                                    </div>
                                 </div>
-                                <div class="mb-4">
-                                    <label for="horario">[[#{horarios.horario}]]</label>
-                                    <input type="text" class="form-control" name="horario" required="true"/>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" type="submit">Guardar</button>
                                 </div>
-                                <div class="mb-4">
-                                    <label for="asiento">[[#{horarios.asiento}]]</label>
-                                    <input type="text" class="form-control" name="asiento" required="true"/>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="submit">Guardar</button>
-                            </div>
                         </form>
                     </div>
                 </div>
