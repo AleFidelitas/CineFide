@@ -1,7 +1,9 @@
 package com.cinefide.service;
 
+import com.cinefide.domain.ReservaConfirmacion;
 import com.cinefide.domain.Reservas;
 import com.cinefide.domain.Usuario;
+import jakarta.mail.MessagingException;
 import java.util.List;
 
 public interface ReservasService {
@@ -21,7 +23,10 @@ public interface ReservasService {
     //se eimina el registro que tenga el valor del idpromocion que trae
     public void delete(Reservas reservas);
     
+    //actiañlizar estado
+    public void updateEstado(Long reservaId, String nuevoEstado);
+    
 //     public void notificar(String costoPelicula);
 
-//    public void notificar(String costoPelicula, String asientosPelicula, String nombPelicula, String numTarjeta, String tarjeta, String horaPelicula, Usuario usuario);
+    public void notificar(ReservaConfirmacion reservasConfirmacion)throws MessagingException;
 }

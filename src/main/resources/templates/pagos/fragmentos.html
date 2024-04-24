@@ -10,7 +10,7 @@
         <!-- 1 metodos-->
         <section th:fragment="pagar" class="py-4 mb-4 bg-light">
             <div class="container-md">
-                <form th:action="@{/pagos/confirmacion}" method="POST" class="was-validated" enctype="multipart/form-data">
+                <form th:action="@{/pagos/confirmacion}" method="POST" class="was-validated" enctype="multipart/form-data" th:object="${reservaConfirmacion}">
                     <div class="row justify-content-center">
                         <div class="col-md-4 ">
                             <img th:src="@{${reservas.imagen}}"
@@ -20,13 +20,14 @@
                             <div class=" d-flex justify-content-between">
                                 <h3 class="m-2" id="tnombPelicula" th:text="${reservas.titulo}">The Roar of Victory</h3>
                                 <!--<input type="text" class="form-control" name="pruebadd" th:field="*{titulo}" required="true"/>-->
-                                <input type="hidden" id="nombPelicula" name="nombPelicula"/>
+                                <input type="hidden" id="nombPelicula" name="tnombPelicula" th:value="${reservas.titulo}"/>
                                 <h5 class="m-2" id="thoraPelicula" th:text="${reservas.horario}">6:00pm</h5>
-                                <input type="hidden" id="horaPelicula" name="horaPelicula"/>
+                                <input type="hidden" id="horaPelicula" name="thoraPelicula" th:value="${reservas.horario}"/>
                             </div>
-                            Asientos: <b id="tasientosPelicula" th:text="${reservas.asiento}">F4 - F5</b> Costo: ¢<b id="tcostoPelicula" >4300</b>
-                            <input type="hidden" id="asientosPelicula" name="asientosPelicula"/>
-                            <input type="hidden" id="costoPelicula" name="costoPelicula"/>
+                            Asientos: <b id="tasientosPelicula" th:text="${reservas.asiento}">F4 - F5</b> Costo: ¢<b id="tcostoPelicula" >[[${cantBoletos}]], 3200c/u</b>
+                            <input type="hidden" id="asientosPelicula" name="tasientosPelicula" th:value="${reservas.asiento}"/>
+                            <input type="hidden" id="costoPelicula" name="tcostoPelicula" th:value="${cantBoletos}"/>
+                            <input type="hidden" id="costoPelicula" name="tIdReserva" th:value="${reservas.idReserva}"/>
                             <div class="align-items-center justify-content-center d-flex border mt-3 w-100 h-75">
 
                                 <div class="w-100">
@@ -60,14 +61,14 @@
                 </form>
             </div>
 
-            <script>
+            <!--<script>
                 document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("nombPelicula").value = document.getElementById("tnombPelicula").innerText;
                     document.getElementById("horaPelicula").value = document.getElementById("thoraPelicula").innerText;
                     document.getElementById("asientosPelicula").value = document.getElementById("tasientosPelicula").innerText;
                     document.getElementById("costoPelicula").value = document.getElementById("tcostoPelicula").innerText;
                 });
-            </script>
+            </script>-->
         </section>
 
         <!-- confirmacion-->
