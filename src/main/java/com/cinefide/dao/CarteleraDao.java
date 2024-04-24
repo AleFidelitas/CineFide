@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CarteleraDao extends JpaRepository<Cartelera,Long>{
     
+    
+    public Cartelera findByTitulo(String titulo);
 }

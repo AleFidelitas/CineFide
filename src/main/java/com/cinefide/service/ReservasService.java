@@ -10,7 +10,7 @@ public interface ReservasService {
 
     //se define la firma del metodo para obtener los registros de reservas
     public List<Reservas> getReservas(boolean activo);
-
+    
     //trae registro por id 
     public Reservas getReservas(Reservas reservas);
     
@@ -28,5 +28,5 @@ public interface ReservasService {
     
 //     public void notificar(String costoPelicula);
 
-    public void notificar(ReservaConfirmacion reservasConfirmacion)throws MessagingException;
+    public void notificar(ReservaConfirmacion reservasConfirmacion, String correo)throws MessagingException;
 }

@@ -13,5 +13,8 @@ public interface CarteleraService {
 
     public void delete (Cartelera cartelera);
     
+        //reservas por titulo
+    public Cartelera findByTitulo(String titulo);
+
     
 }

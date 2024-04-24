@@ -40,4 +40,10 @@ public class CarteleraServiceImpl implements CarteleraService{
         carteleraDao.delete(cartelera);
     }
     
+    @Override
+    @Transactional(readOnly = true)
+    public Cartelera findByTitulo(String titulo) {
+        return carteleraDao.findByTitulo(titulo);
+    }
+    
 }

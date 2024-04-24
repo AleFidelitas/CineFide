@@ -1,6 +1,8 @@
 package com.cinefide.controller;
 
+import com.cinefide.domain.Cartelera;
 import com.cinefide.domain.Reservas;
+import com.cinefide.service.CarteleraService;
 import com.cinefide.service.ReservasService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class ReservasController {
 
     @Autowired
     private ReservasService reservasService;
+    
+        @Autowired
+    private CarteleraService carteleraService;
 
     @GetMapping("/listado")
     public String listado(Model model) {
@@ -35,16 +40,29 @@ public class ReservasController {
     public String guardar(Reservas reservas) {
         Long idUsuario = (Long) session.getAttribute("idUsuario");
         reservas.setIdUsuario(idUsuario);
-        System.out.println(reservas);
+//        System.out.println(reservas);
         String imagen = reservas.getImagen();
+        System.out.println(reservas + "code: u3y49534");
+        
         if (imagen == null || imagen.isEmpty()) {
-            reservas.setImagen("https://www.anahuac.mx/generacion-anahuac/sites/default/files/articles/SalaDeCine.jpg");
+            
+            
+            Cartelera cartelera = carteleraService.findByTitulo(reservas.getTitulo());
+            if (cartelera != null) {
+                reservas.setImagen(cartelera.getImagen());
+            } else {
+                reservas.setImagen("https://www.anahuac.mx/generacion-anahuac/sites/default/files/articles/SalaDeCine.jpg");
+            }
+            
+            
+            
+            
         }
         String estado = reservas.getEstado();
         if (estado == null || estado.isEmpty()) {
             reservas.setEstado("pendiente");
         }
-        System.out.println(reservas);
+//        System.out.println(reservas);
         reservasService.save(reservas);
         return "redirect:/reservas/listado";
     }

@@ -39,7 +39,7 @@ public class PagosController {
         int cantBoletos = asientos.length*3200;
         model.addAttribute("cantBoletos", cantBoletos);
         model.addAttribute("reservas", reservas);
-        System.out.println(reservas);
+
         return "/pagos/pagar";
     }
 
@@ -52,11 +52,9 @@ public class PagosController {
 
     @PostMapping("/confirmacion")
     public String confirmacion(ReservaConfirmacion reservasConfirmacion) throws MessagingException{
-//        Long idUsuario = (Long) session.getAttribute("idUsuario");
-//        Usuario usuario = usuarioService.getUsuario(idUsuario);
-        reservasService.notificar(reservasConfirmacion);
-        System.out.println("code:8416518");
-        
+        Long idUsuario = (Long) session.getAttribute("idUsuario");
+       Usuario usuario = usuarioService.findByIdUsuario(idUsuario);
+        reservasService.notificar(reservasConfirmacion, usuario.getCorreo());
         return "/pagos/confirmacion";
     }
 

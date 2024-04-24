@@ -41,6 +41,7 @@ public class ReservasServiceImpl implements ReservasService {
     public Reservas getReservas(Reservas reservas) {
         return reservasDao.findById(reservas.getIdReserva()).orElse(null);
     }
+    
 
     @Override
     @Transactional
@@ -61,7 +62,7 @@ public class ReservasServiceImpl implements ReservasService {
     }
 
     @Override
-    public void notificar(ReservaConfirmacion reservasConfirmacion) throws MessagingException {
+    public void notificar(ReservaConfirmacion reservasConfirmacion, String correo) throws MessagingException {
         System.out.println(reservasConfirmacion);
         updateEstado(reservasConfirmacion.gettIdReserva() , "pagado");
         String[] asientos = reservasConfirmacion.getTasientosPelicula().split("-");
@@ -299,7 +300,7 @@ public class ReservasServiceImpl implements ReservasService {
                 + "  </div>\n"
                 + " </body>";
         String asunto = "Confirmacion de compra";
-        correoService.enviarCorreoHtml("r.alejimenez@gmail.com", asunto, mensaje);
+        correoService.enviarCorreoHtml(correo, asunto, mensaje);
     }
 
     @Override
@@ -316,4 +317,6 @@ public class ReservasServiceImpl implements ReservasService {
             throw new RuntimeException("Reserva no encontrada para el ID: " + reservaId);
         }
     }
+
+
 }

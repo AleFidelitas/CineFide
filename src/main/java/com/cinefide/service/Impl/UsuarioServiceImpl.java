@@ -32,6 +32,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional(readOnly = true)
+    public Usuario findByIdUsuario(Long idUsuario) {
+        return usuarioDao.findByIdUsuario(idUsuario);
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
     public Usuario getUsuarioPorUsername(String username) {
         return usuarioDao.findByUsername(username);
     }
