@@ -76,7 +76,7 @@
                                 <div class="mb-4">
                                     <label for="asiento">[[#{reservas.asiento}]]</label>
                                     <input type="text" class="form-control" name="asiento" required="true"/>
-                                </div>
+                                </div>                         
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-primary" type="submit">Guardar</button>
@@ -100,6 +100,7 @@
                                 <table class="table table-striped table-hover">
                                     <thead class="table-dark">
                                         <tr><th></th>
+                                            <th></th>
                                             <th>[[#{reservas.fecha}]]</th>
                                             <th>[[#{reservas.horario}]]</th>
                                             <th>[[#{reservas.asiento}]]</th>
@@ -109,20 +110,29 @@
                                     <tbody>
                                         <tr th:each="reservas, contador : ${reservas}">
 
+
+
+                                            <td>[[${contador.count}]]</td>
+
                                             <td class="col-md-4">
                                                 <img th:src="${reservas.imagen}" class="card-img img-fluid rounded-start h-30 w-25"style="object-fit: cover;"/>
                                             </td>
                                             <td>[[${reservas.fecha}]]</td>
                                             <td>[[${reservas.horario}]]</td>
                                             <td>[[${reservas.asiento}]]</td>
-                                            <td>[[${contador.count}]]</td>
+
                                             <td>[[${reservas.titulo}]]</td>
-                                            <td><a th:href="@{/reservas/eliminar/}+${reservas.idPelicula}"
+                                            <td><a th:href="@{/reservas/eliminar/}+${reservas.idReserva}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
-                                                <a th:href="@{/reservas/modificar/}+${reservas.idPelicula}"
+                                                <a th:href="@{/reservas/modificar/}+${reservas.idReserva}"
                                                    class="btn btn-success">
-                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
+                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a>
+                                                <a th:href="@{/pagos/pagar/}+${reservas.idReserva}"
+                                                   class="btn btn-primary mt-1" th:classappend="${reservas.estado == 'pagado'} ? 'd-none'">
+                                                    <i class="fas fa-money-bill-1"></i> [[#{accion.pagar}]]</a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -153,7 +163,7 @@
                           th:object="${reservas}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
-                        <input type="hidden" name="idPelicula" th:field="*{idPelicula}"/>
+                        <input type="hidden" name="idReserva" th:field="*{idReserva}"/>
                         <input type="hidden" name="imagen" th:field="*{imagen}"/>
                         <section th:replace="~{reservas/fragmentos :: botonesEditar}"/>
                         <div id=details>
@@ -189,6 +199,9 @@
                                                            name="asiento" th:field="*{asiento}"
                                                            required="true">
                                                 </div>
+                                                <input type="hidden" class="form-control" 
+                                                           name="estado" th:field="*{estado}"
+                                                           required="true">
                                                 <div class="mb-3">
                                                     <img id="blah" th:src="@{${reservas.imagen}}" alt="your image" height="200"/>
                                                 </div>
@@ -212,7 +225,7 @@
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
-                        <a th:href="@{/reservas/eliminar/}+${reservas.idPelicula}"
+                        <a th:href="@{/reservas/eliminar/}+${reservas.idReserva}"
                            class="btn btn-danger">
                             <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                         </a>

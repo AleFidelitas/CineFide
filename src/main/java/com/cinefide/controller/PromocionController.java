@@ -38,3 +38,4 @@ public class PromocionController {
         promocionService.delete(promocion);
         return "redirect:/promocion/listado";
     }}
+

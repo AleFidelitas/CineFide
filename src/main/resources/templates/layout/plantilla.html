@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html
     xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
     xmlns:th="http://www.thymeleaf.org">
     <head th:fragment="head">
         <title>CineFide</title>
@@ -24,35 +25,58 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+
                         <ul class="navbar-nav">
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/cartelera/listado}">[[#{plantilla.cartelera}]]</a></li> 
-                        </ul>
-                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <ul class="navbar-nav">
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/proximosestrenos/listado}">[[#{plantilla.proximosestrenos}]]</a></li> 
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/promocion/listado}">[[#{plantilla.promocion}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/valoracion/listado}">[[#{plantilla.valoracion}]]</a></li>
                         </ul>
-                         </div>
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <ul class="navbar-nav">
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/reservas/listado}">[[#{plantilla.reservas}]]</a></li> 
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/pagos/pagar}">[[#{plantilla.pagar}]]</a></li> 
                         </ul>
-                         </div>
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <ul class="navbar-nav">
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/horarios/listado}">[[#{plantilla.horarios}]]</a></li> 
                         </ul>
-                         </div>
-                        <ul class="navbar-nav">
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/usuario/iniciar}"><i class="fa-regular fa-user"></i></a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">[[#{plantilla.idioma}]]</a>
-                                <ul class="dropdown-menu dropdown-menu-black">
-                                    <li><a class="dropdown-item"  th:href="@{/(lang=es)}">ES</a></li>
-                                    <li><a class="dropdown-item" th:href="@{/(lang=en)}">EN</a></li>
-                                </ul>
-                            </li>
-                        </ul>
                     </div>
+
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">[[#{plantilla.idioma}]]</a>
+                            <ul class="dropdown-menu dropdown-menu-black">
+                                <li><a class="dropdown-item"  th:href="@{/(lang=es)}">ES</a></li>
+                                <li><a class="dropdown-item" th:href="@{/(lang=en)}">EN</a></li>
+                            </ul>
+                        </li>                            
+                    </ul>
+                    <!-- esto aparece no estoy autenticado -->
+                    <ul class="navbar-nav" sec:authorize='!isAuthenticated()'>
+                        <li class="nav-item px-2">
+                            <a class="nav-link" th:href="@{/login}">
+                                <i class="fa-regular fa-user"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- esto aparece si estoy autenticado -->
+                    <ul class="navbar-nav" sec:authorize='isAuthenticated()'>
+                        <li class="nav-item my-auto">
+                            <img th:src="@{${session.usuarioImagen}}" alt="foto" height="40" class="rounded-circle" />
+                            <span sec:authentication="name">Doe</span>
+                        </li>
+                        <li>
+                            <form method="POST" th:action="@{/logout}">
+                                <button class="btn"><i class="fas fa-sign-out-alt"></i></button>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
             </nav>
             <section id="main-header" class="py-2 bg-warning text-white">
@@ -68,8 +92,10 @@
 
         <footer th:fragment="footer" class="bg-dark text-warning mt-5 p-2">
             <div class="container">
-                <div class="col">
-                    <p>&COPY; [[#{plantilla.derechos}]]</p>
+                <div class="row justify-content-center">
+                    <div class="col-auto text-center">
+                        <p>&COPY; [[#{plantilla.derechos}]]</p>
+                    </div>
                 </div>
             </div>
         </footer>

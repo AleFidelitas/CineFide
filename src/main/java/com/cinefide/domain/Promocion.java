@@ -15,7 +15,7 @@ public class Promocion implements Serializable{
     @Column(name="idPromocion")
     private Long idPromocion;
   
+    private String nombrePromocion;
     private String descripcion;
-    private String rutaImagen;
-    private boolean activo;
+    private String reglamento;
 }
